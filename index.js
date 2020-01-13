@@ -2,6 +2,7 @@ const Twitch = require('./Twitch');
 const Discord = require('./Discord');
 
 const argv = require('yargs')
+    .env('D2T')
     .options({
         'verbose': {
             alias: 'v',
