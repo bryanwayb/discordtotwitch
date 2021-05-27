@@ -42,6 +42,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DiscordService_1 = __importDefault(require("./services/DiscordService"));
 var TwitchService_1 = __importDefault(require("./services/TwitchService"));
 var ServiceConnector_1 = __importDefault(require("./ServiceConnector"));
+var server_1 = __importDefault(require("./server"));
+server_1.default();
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var discord, twitch, connector, connector2;

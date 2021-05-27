@@ -1,4 +1,5 @@
 const tempConfig: any = {
+    'twitcheventsub__baseurl': 'https://api.twitch.tv/helix/eventsub/'
 };
 
 class Config {

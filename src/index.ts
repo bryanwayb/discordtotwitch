@@ -2,6 +2,9 @@ import { Service } from './interfaces/Service';
 import DiscordService from './services/DiscordService';
 import TwitchService from './services/TwitchService';
 import ServiceConnector from './ServiceConnector';
+import server from './server';
+
+server();
 
 async function main() {
     const discord: Service = new DiscordService('846631995752579102');
