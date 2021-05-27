@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+    monogo-db-service:
+        container_name: monogo-db-service
+        ports:
+            - "27017:27017"

@@ -4,10 +4,13 @@
   "description": "",
   "main": "src/index.js",
   "dependencies": {
+    "@types/mongodb": "^3.6.16",
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
+    "mongodb": "^3.6.9",
     "tmi.js": "^1.5.0",
-    "twitch": "^4.5.5"
+    "twitch": "^4.5.5",
+    "twitch-auth": "^4.5.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+    sync-replay:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment:
+            NODE_ENV: development
+        depends_on:
+            - monogo-db-service
+        networks:
+            - application

@@ -39,22 +39,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var DiscordService_1 = __importDefault(require("./services/DiscordService"));
-var TwitchService_1 = __importDefault(require("./services/TwitchService"));
-var ServiceConnector_1 = __importDefault(require("./ServiceConnector"));
+var DiscordService_1 = __importDefault(require("./chatServices/DiscordService"));
+var TwitchService_1 = __importDefault(require("./chatServices/TwitchService"));
+var ChatServiceConnector_1 = __importDefault(require("./ChatServiceConnector"));
 var server_1 = __importDefault(require("./server"));
+var userRepository_1 = require("./repository/userRepository");
 server_1.default();
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var discord, twitch, connector, connector2;
-        return __generator(this, function (_a) {
-            discord = new DiscordService_1.default('846631995752579102');
-            twitch = new TwitchService_1.default('natorics');
-            connector = new ServiceConnector_1.default(discord, twitch);
-            connector.pipe();
-            connector2 = new ServiceConnector_1.default(twitch, discord);
-            connector2.pipe();
-            return [2 /*return*/];
+        var discord, twitch, connector, connector2, _a, _b, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    discord = new DiscordService_1.default('846631995752579102');
+                    twitch = new TwitchService_1.default('natorics');
+                    connector = new ChatServiceConnector_1.default(discord, twitch);
+                    connector.pipe();
+                    connector2 = new ChatServiceConnector_1.default(twitch, discord);
+                    connector2.pipe();
+                    _b = (_a = console).log;
+                    _c = ['getting user'];
+                    return [4 /*yield*/, userRepository_1.GetUser('testing user')];
+                case 1:
+                    _b.apply(_a, _c.concat([_d.sent()]));
+                    return [2 /*return*/];
+            }
         });
     });
 }

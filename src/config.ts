@@ -1,5 +1,8 @@
 const tempConfig: any = {
-    'twitcheventsub__baseurl': 'https://api.twitch.tv/helix/eventsub/'
+
+    'twitchbot__username': 'ttv_chat_bot',
+    'twitch__clientid': 'b4ij2zgtttpgg686l1i1bb7wr0u2i2',
+    'mongodb__url': 'mongodb://root:development@localhost:27017'
 };
 
 class Config {

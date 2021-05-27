@@ -3,7 +3,7 @@ import { Logger } from './logger'
 
 const log = new Logger('ServiceConnector');
 
-export default class ServiceConnector {
+export default class ChatServiceConnector {
     private fromService: Service;
     private toService: Service;
 
