@@ -40,86 +40,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var DiscordService_1 = __importDefault(require("./services/DiscordService"));
-//const argv = require('yargs')
-//    .env('D2T')
-//    .options({
-//        'verbose': {
-//            alias: 'v',
-//            type: 'boolean',
-//            description: 'Enable verbose logging',
-//            demandOption: false
-//        },
-//        'twitch-login': {
-//            type: 'string',
-//            description: 'Twitch user that will be used to send messages from',
-//            demandOption: true
-//        },
-//        'twitch-auth': {
-//            type: 'string',
-//            description: 'Twitch authentication token to login as the given user',
-//            demandOption: true
-//        },
-//        'twitch-channel': {
-//            type: 'string',
-//            description: 'Twitch channel to connect to for sending/receiving of messages',
-//            demandOption: true
-//        },
-//        'discord-channel-id': {
-//            type: 'string',
-//            description: 'Discord text channel ID to monitor for messages',
-//            demandOption: true
-//        },
-//        'discord-webhook-id': {
-//            type: 'string',
-//            description: 'Discord authentication channel Webhook ID to for sending messages',
-//            demandOption: true
-//        },
-//        'discord-webhook-token': {
-//            type: 'string',
-//            description: 'Discord Webhook token associated to the provided Webhook ID',
-//            demandOption: true
-//        },
-//        'discord-bot-token': {
-//            type: 'string',
-//            description: 'Discord bot authentication token',
-//            demandOption: true
-//        }
-//    })
-//    .argv;
-//const twitchLogin = argv['twitch-login'];
-//const twitchAuthentication = argv['twitch-auth'];
-//const twitchChannel = argv['twitch-channel'];
-//const discordChannelId = argv['discord-channel-id'];
-//const discordWebhookId = argv['discord-webhook-id'];
-//const discordWebhookToken = argv['discord-webhook-token'];
-//const discordBotToken = argv['discord-bot-token'];
-//const verbose = argv.v || argv.verbose;
-//function log(...args) {
-//    if(verbose) {
-//        console.log.apply(console, args);
-//    }
-//}
+var TwitchService_1 = __importDefault(require("./services/TwitchService"));
+var ServiceConnector_1 = __importDefault(require("./ServiceConnector"));
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var discordService;
+        var discord, twitch, connector, connector2;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    discordService = new DiscordService_1.default('846509015517233194');
-                    return [4 /*yield*/, discordService.connect()];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, discordService.sendMessage({
-                            username: 'testing username',
-                            message: 'testing message'
-                        })];
-                case 2:
-                    _a.sent();
-                    discordService.onMessage(function (options) {
-                        console.log(options.message);
-                    });
-                    return [2 /*return*/];
-            }
+            discord = new DiscordService_1.default('846631995752579102');
+            twitch = new TwitchService_1.default('natorics');
+            connector = new ServiceConnector_1.default(discord, twitch);
+            connector.pipe();
+            connector2 = new ServiceConnector_1.default(twitch, discord);
+            connector2.pipe();
+            return [2 /*return*/];
         });
     });
 }

@@ -14,6 +14,26 @@ export class Logger {
     }
 
     log(level: LogLevel, message: string, ...data: any) {
-        console.log(`<${this.name}> [${level.toString()} ${(new Date().toISOString())}] ${message}`, ...data);
+        console.log(`[${level.toString()} ${(new Date().toISOString())}] <${this.name}> ${message}`, ...data);
+    }
+
+    trace(message: string, ...data: any) {
+        this.log(LogLevel.Trace, message, ...data);
+    }
+
+    info(message: string, ...data: any) {
+        this.log(LogLevel.Info, message, ...data);
+    }
+
+    warning(message: string, ...data: any) {
+        this.log(LogLevel.Warning, message, ...data);
+    }
+
+    error(message: string, ...data: any) {
+        this.log(LogLevel.Error, message, ...data);
+    }
+
+    fatal(message: string, ...data: any) {
+        this.log(LogLevel.Fatal, message, ...data);
     }
 }

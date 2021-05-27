@@ -1,5 +1,4 @@
 const tempConfig: any = {
-    'discord__bottoken': 'NjY0ODgxODg2NDU5MzMwNTYy.Xhdhgg.EVNxY-vSoDEwtq0i01Ugblr4dEI'
 };
 
 class Config {

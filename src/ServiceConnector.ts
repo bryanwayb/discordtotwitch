@@ -1,4 +1,7 @@
 import { Service } from './interfaces/Service';
+import { Logger } from './logger'
+
+const log = new Logger('ServiceConnector');
 
 export default class ServiceConnector {
     private fromService: Service;
@@ -9,9 +12,22 @@ export default class ServiceConnector {
         this.toService = toService;
     }
 
-    pipe() {
-        this.fromService.onMessage((message) => {
-            this.toService.sendMessage(message);
+    async pipe() {
+        await this.fromService.connect();
+        await this.toService.connect();
+
+        this.fromService.onMessage(async (message) => {
+            try {
+                await this.toService.sendMessage(message);
+            }
+            catch (ex) {
+                log.error('Error while trying to send a message', ex);
+            }
         });
+    }
+
+    async shutdown() {
+        await this.fromService.disconnect();
+        await this.toService.disconnect();
     }
 }

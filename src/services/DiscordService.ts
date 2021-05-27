@@ -29,6 +29,11 @@ export default class DiscordService implements Service {
         await discordClient;
     }
 
+    async disconnect() {
+        const client = await discordClient;
+        await client.destroy();
+    }
+
     private async getChannel(): Promise<TextChannel> {
         const client = await discordClient;
 
@@ -53,10 +58,12 @@ export default class DiscordService implements Service {
         const collector = channel.createMessageCollector(() => true);
 
         collector.on('collect', (message) => {
-            handler({
-                username: `${message.author.username}#${message.author.discriminator}`,
-                message: message.content
-            });
+            if (!message.author.bot) {
+                handler({
+                    username: `${message.author.username}#${message.author.discriminator}`,
+                    message: message.content
+                });
+            }
         });
     }
 
